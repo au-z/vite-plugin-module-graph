@@ -1,0 +1,41 @@
+:host {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  color: var(--color, white);
+  font-family: var(--font-family, monospace);
+}
+
+main {
+  display: grid;
+  grid-template-columns: var(--left-panel-width) 1fr;
+  grid-template-rows: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.left-panel {
+  grid-column: 1;
+  grid-row: 1;
+  background-color: var(--left-panel-bg, rgba(0, 0, 0, 0.30));
+  
+  backdrop-filter: blur(1rem);
+  border-right: 1px solid var(--border-color);
+  overflow: auto;
+}
+
+.right-panel {
+  grid-column: 2;
+  grid-row: 1;
+  background-color: var(--right-panel-bg);
+}
+
+/* for the graph tooltips */
+
+div.scene-tooltip {
+  position: absolute;
+  z-index: 1;
+}

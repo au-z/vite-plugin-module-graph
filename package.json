@@ -1,0 +1,97 @@
+{
+  "name": "vite-plugin-module-graph",
+  "description": "Visualize and explore your module import graph",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/plugin.js",
+  "module": "./dist/plugin.js",
+  "exports": {
+    ".": {
+      "import": "./dist/plugin.js",
+      "types": "./dist/types/plugin.d.ts"
+    },
+    "./module-graph": {
+      "import": "./dist/module-graph.js",
+      "types": "./dist/types/module-graph.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "wireit",
+    "build": "wireit",
+    "build:deps": "wireit",
+    "build:watch": "wireit",
+    "prepublishOnly": "pnpm build",
+    "tsc": "wireit"
+  },
+  "wireit": {
+    "dev": {
+      "command": "vite",
+      "server": true,
+      "dependencies": [
+        "build"
+      ],
+      "files": [
+        "src"
+      ]
+    },
+    "build": {
+      "command": "vite build && tsc",
+      "files": [
+        "src"
+      ],
+      "output": [
+        "dist"
+      ]
+    },
+    "build:watch": {
+      "command": "vite build --watch",
+      "dependencies": [
+        "build:deps"
+      ],
+      "server": true,
+      "files": [
+        "src"
+      ],
+      "output": [
+        "dist"
+      ]
+    },
+    "tsc": {
+      "command": "tsc",
+      "files": [
+        "tsconfig.json",
+        "src"
+      ],
+      "output": [
+        "dist/types"
+      ]
+    }
+  },
+  "dependencies": {
+    "3d-force-graph": "^1.73.2",
+    "@auzmartist/hybrids-helpers": "^0.4.2",
+    "hybrids": "^8.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "typescript": "^5.4.3",
+    "vite": "^5.2.6",
+    "wireit": "^0.14.4"
+  },
+  "keywords": [
+    "build",
+    "plugin",
+    "vite",
+    "graph",
+    "module",
+    "webGL"
+  ],
+  "author": "Austin Martin (auz.martin@gmail.com)",
+  "license": "ISC",
+  "files": [
+    "dist"
+  ],
+  "directories": {
+    "test": "test"
+  }
+}
